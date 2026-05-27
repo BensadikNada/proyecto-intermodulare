@@ -7,7 +7,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import com.pi.successflow.entity.Proyecto;
 import com.pi.successflow.entity.Tarea;
 import com.pi.successflow.entity.Usuario;
 import com.pi.successflow.repositories.TareaRepository;
