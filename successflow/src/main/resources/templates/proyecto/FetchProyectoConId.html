@@ -55,17 +55,62 @@
         </div>
     </div>
     <div class="content">
-        <a href=""><i class="fa-solid fa-arrow-left"></i> Volver al Proyecto</a>
+        <a th:href="@{/proyecto/listar-proyectos}" class="volver"><i class="fa-solid fa-arrow-left"></i> Volver al Proyecto</a>
         <div class="header-project">
             <div class="details-project">
                 <i class="fa-solid fa-hashtag"></i>
                 <div>
                     <h3 th:text="${p.titulo}"></h3>
+                    <p th:text="${p.descripcion}"></p>
                 </div>
             </div>
+            <div class="links-action">
+                <a href="" class="anadir-miembro">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Añadir miembro
+                </a>
+                <a href="" class="anadir-tarea">
+                    <i class="fa-solid fa-plus"></i>
+                    Añadir Tarea
+                </a>
+            </div>
+        </div>
+        <div class="miembros-n-l">
+            <i class="fa-solid fa-user-group"></i>
+            <p class="firstLetterUsuarios">j</p>
+            <p>miembros</p>
         </div>
         <div class="body-project">
-
+            <div class="pendiente">
+                <div class="header-pendiente">
+                    <div>
+                        <i class="fa-solid fa-circle"></i>
+                        <p>Pendiente</p>
+                        <p>(num)</p>
+                    </div>
+                    <a href=""><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="en-proceso">
+                <div class="header-en-progreso">
+                    <div>
+                        <i class="fa-solid fa-circle"></i>
+                        <p>En Progreso</p>
+                        <p>(num)</p>
+                    </div>
+                    <a href=""><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="hecha">
+                <div class="header-hecha">
+                    <div>
+                        <i class="fa-solid fa-circle"></i>
+                        <p>Hecha</p>
+                        <p>(num)</p>
+                    </div>
+                    <a href=""><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </div>
         </div>
     </div>
 </body>

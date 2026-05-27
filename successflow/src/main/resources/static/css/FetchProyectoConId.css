@@ -144,3 +144,133 @@ nav {
 .content {
     padding: 40px;
 }
+
+.volver {
+    text-decoration: none;
+    color: #3b3b3b;
+    font-size: 20px;
+}
+
+.volver>i {
+    padding-right: 5px;
+}
+
+.header-project {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.details-project {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.details-project>i {
+    padding: 15px;
+    color: #481fff;
+    background-color: #481fff1b;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.details-project h3 {
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+.details-project p {
+    color: #606060;
+}
+
+.links-action {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.anadir-miembro {
+    color: #3b3b3b;
+    background-color: white;
+    border: #eee solid 1px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.anadir-miembro>i {
+    margin-right: 5px;
+}
+
+.anadir-miembro:hover {
+    background-color: #a8b2ff25;
+}
+
+.anadir-tarea {
+    color: white;
+    background-color: #481fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.anadir-tarea>i {
+    margin-right: 5px;
+}
+
+.anadir-tarea:hover {
+    background-color: rgb(37, 0, 205)
+}
+
+.miembros-n-l {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 16px;
+    color: #606060;
+}
+
+.firstLetterUsuarios {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #888cff;
+    color: white;
+    font-weight: bold;
+    margin-left: -8px;
+    border: 2px solid white;
+}
+
+.body-project {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.header-pendiente{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-pendiente > div{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.header-pendiente > div i{
+    font-size: 10px;
+    color: #606060;
+}
