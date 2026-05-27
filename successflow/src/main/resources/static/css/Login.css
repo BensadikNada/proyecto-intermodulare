@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(180deg, #eedeff 0%, #fbebfe 50%, #ffffff 100%);
+}
+
+.logo {
+    margin-top: 70px;
+    margin-bottom: 40px;
+    display: inline-block;
+}
+
+.logo-words {
+    height: 100px;
+}
+
+.login-form {
+    width: 380px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.login-form h3 {
+    margin: 0;
+    font-size: 22px;
+    text-align: center;
+}
+
+.login-form p {
+    margin-bottom: 5px;
+    color: #777;
+    font-size: 14px;
+    text-align: center;
+}
+
+.login-form form div {
+    margin-bottom: 15px;
+}
+
+.login-form label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px 14px;
+
+    border-radius: 10px;
+    border: 1px solid #ddd;
+
+    outline: none;
+    font-size: 14px;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, #bc66ea, #6ea9f7);
+    color: white;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.2s;
+}

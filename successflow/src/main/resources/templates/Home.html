@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Landing</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/Home.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <a th:href="@{/}" class="logo-app">
+            <img th:src="@{/images/icon-color.png}" alt="SuccessFlow Logo" class="logo-img">
+            <img th:src="@{/images/wordmark-black.png}" alt="successflow word logo" class="logo-words">
+        </a>
+        <div class="navbar">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+        </div>
+        <div class="login-registrar">
+            <a class="login" th:href="@{/auth/login}">Login</a>
+            <a class="registrar" th:href="@{/auth/register}">Register</a>
+        </div>
+    </header>
+    <main>
+        <div class="hero">
+            <div>
+                <div class="new">
+                    <i class="fa-solid fa-circle"></i>
+                    <p>New Collaborative Projects</p>
+                </div>
+                <div class="title">
+                    <p>Organize your tasks. <span>Collaborate</span> with your team.</p>
+                </div>
+                <div class="descripcion">
+                    <p>Manage personal tasks or work with your team in shared projects <span>— carpetas —</span> from
+                        anywhere.</p>
+                </div>
+                <div class="buttons-login">
+                    <a class="get-started" href="">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+                    <a class="login-hero" href="">Login</a>
+                </div>
+            </div>
+            <div>
+                <div class="card">
+                    <div class="head-card">
+                        <div class="title-card">
+                            <p style="color: rgb(115, 115, 115);">Project</p>
+                            <p style="font-weight: bold;">Stock Management</p>
+                        </div>
+                        <div class="personas">
+                            <p>M</p>
+                            <p>J</p>
+                            <p>A</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="body-card">
+                        <div class="mini-card">
+                            <div class="todo-title">
+                                <i class="fa-solid fa-circle"></i>
+                                <p>TO DO</p>
+                            </div>
+                            <div class="todo-list">
+                                <i class="fa-regular fa-circle"></i>
+                                <p>Logo assets</p>
+                            </div>
+                        </div>
+                        <div class="mini-card">
+                            <div class="in-progress-title">
+                                <i class="fa-solid fa-circle"></i>
+                                <p>IN PROGRESS</p>
+                            </div>
+                            <div class="in-progress-list">
+                                <i class="fa-regular fa-clock"></i>
+                                <p>Landing Page</p>
+                            </div>
+                            <div class="in-progress-list">
+                                <i class="fa-regular fa-clock"></i>
+                                <p>Dashboard</p>
+                            </div>
+                        </div>
+                        <div class="mini-card">
+                            <div class="done-title">
+                                <i class="fa-solid fa-circle"></i>
+                                <p>DONE</p>
+                            </div>
+                            <div class="done-list">
+                                <i class="fa-regular fa-circle-check"></i>
+                                <p>Colors sets</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="features" class="features">
+            <div class="title-features">
+                <span>FEATURES</span>
+                <h2>Everything you need to stay productive</h2>
+                <p>A focused toolkit for individuals and teams.</p>
+            </div>
+            <div class="cards-features">
+                <div class="card-feature">
+                    <i class="fa-solid fa-list-check"></i>
+                    <h5>Task Management</h5>
+                    <p>Createm edit, delete tasks with a workflow that feels effortless.</p>
+                </div>
+                <div class="card-feature">
+                    <i class="fa-solid fa-users"></i>
+                    <h5>Team Collaboration</h5>
+                    <p>Share projects with teammate and work together in real time.</p>
+                </div>
+                <div class="card-feature">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <h5>Tasks Tracking</h5>
+                    <p>Visual To Do, In Progress and Done columns keep everyone aligned.</p>
+                </div>
+                <div class="card-feature">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <h5>Secure Auth</h5>
+                    <p>Industry-standard authentication keeps your workspaces protected.</p>
+                </div>
+            </div>
+        </div>
+        <div class="how-it-works" id="how-it-works">
+            <div class="title-how">
+                <span>HOW IT WORKS</span>
+                <h2>Up and running in three steps</h2>
+            </div>
+            <div class="body-howitworks">
+                <div class="steps">
+                    <div class="icon-number">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <h3>Create an account</h3>
+                    <p>Sign up in seconds and set up your personal workspace.</p>
+                </div>
+                <div class="steps">
+                    <div class="icon-number">
+                        <i class="fa-solid fa-folder-plus"></i>
+                    </div>
+                    <h3>Create or join projects</h3>
+                    <p>Spin up a shared project and invite your team.</p>
+                </div>
+                <div class="steps">
+                    <div class="icon-number">
+                        <i class="fa-regular fa-circle-check"></i>
+                    </div>
+                    <h3>Manage and complete tasks</h3>
+                    <p>Track progress together and ship work faster.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="logo-app">
+            <img th:src="@{/images/icon-color.png}" alt="SuccessFlow Logo" class="logo-img">
+            <img th:src="@{/images/wordmark-black.png}" alt="successflow word logo" class="logo-words">
+        </div>
+        <div class="footer-login">
+            <a href="">Login</a>
+            <a href="">Register</a>
+            <p>© 2026 Flow Into Success</p>
+        </div>
+    </footer>
+</body>
+
+</html>

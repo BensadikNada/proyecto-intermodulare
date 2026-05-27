@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Login</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/Login.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <a th:href="@{/}" class="logo">
+        <img th:src="@{/images/wordmark-black.png}" alt="successflow word logo" class="logo-words">
+    </a>
+    <div class="login-form">
+        <h3>Welcome Back</h3>
+        <p>Sign in to your account</p>
+        <form th:action="@{/login}" method="post">
+            <div>
+                <label for="email or username">Correo o Username</label>
+                <input type="text" name="username" placeholder="example@example.com or username">
+            </div>
+            <div>
+                <label for="email or username">Contraseña</label>
+                <input type="password" name="password" placeholder="********">
+            </div>
+            <button type="submit">Sign in</button>
+            <p style="padding-top: 10px;">Don't have an account? <a th:href="@{/auth/register}">Sign up</a></p>
+        </form>
+    </div>
+</body>
+
+</html>

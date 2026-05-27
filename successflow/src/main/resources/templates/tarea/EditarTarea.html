@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Editar Tarea</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/CrearTarea.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Editar Tarea</h1>
+    <form th:action="@{/tarea/editar/{id_tarea}(id_tarea = ${t.id_tarea})}" method="post">
+        <div>
+            <label>Titulo:</label>
+            <input type="text" th:value="${t.titulo}" name="titulo" placeholder="Introduce el titulo de la tarea" required>
+        </div>
+        <div>
+            <label>Descripción</label>
+            <textarea name="descripcion" th:text="${t.descripcion}" placeholder="Introduce la descripcion de la tarea (Optional)"></textarea>
+        </div>
+        <div>
+            <label>Fecha de Inicio</label>
+            <input type="date" name="fecha_inicio" th:value="${t.fecha_inicio}" required>
+        </div>
+        <div>
+            <label>Fecha limite</label>
+            <input type="date" name="fecha_fin" th:value="${t.fecha_fin}" required>
+        </div>
+        <input type="hidden" name="estado" value="pendiente">
+        <input type="hidden" name="tipo" value="individual">
+        <div>
+            <a th:href="@{/tarea/listar-todo}">Cancelar</a>
+            <button type="submit">Editar</button>
+        </div>
+    </form>
+</body>
+</html>

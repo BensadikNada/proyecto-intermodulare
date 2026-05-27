@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Listar Tarea</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/ListarTareas.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="side-bar">
+        <div class="logo">
+            <img th:src="@{/images/icon-color.png}" alt="icon color">
+            <img th:src="@{/images/wordmark-black.png}" alt="word mark">
+        </div>
+        <nav>
+            <a th:href="@{/dashboard}" class="dashboard-link">
+                <i class="fa-solid fa-chart-simple"></i>
+                Dashboard
+            </a>
+            <a th:href="@{/tarea/listar-todo}" class="dashboard-link-is-active">
+                <i class="fa-regular fa-square-check"></i>
+                Mis Tareas
+            </a>
+            <a th:href="@{/proyecto/listar-proyectos}" class="dashboard-link">
+                <i class="fa-solid fa-folder-tree"></i>
+                Proyectos
+            </a>
+            <a href="" class="dashboard-link">
+                <i class="fa-regular fa-circle-check"></i>
+                Tareas Completas
+            </a>
+            <a href="" class="dashboard-link">
+                <i class="fa-regular fa-user"></i>
+                Perfil
+            </a>
+        </nav>
+        <div class="footer-nav">
+            <div class="usuario">
+                <p th:text="${firstLetter}"></p>
+                <div class="details">
+                    <p th:text="${usuario.username}"></p>
+                    <p th:text="${usuario.correo}"></p>
+                </div>
+            </div>
+            <form th:action="@{/logout}" method="post">
+                <div class="logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <button type="submit">Logout</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="content">
+        <div class="header-content">
+            <div class="titles">
+                <h1>Mis Tareas</h1>
+                <p>Gestiona tus tareas personales</p>
+            </div>
+            <a th:href="@{/tarea/crear}"><i class="fa-solid fa-plus"></i> Nueva Tarea</a>
+        </div>
+        <div th:if="${#lists.isEmpty(tareas)}" class="tareas">
+            <i class="fa-regular fa-clipboard"></i>
+            <h3>No hay tareas</h3>
+            <p>Comienza creando tu primera tarea.</p>
+            <a th:href="@{/tarea/crear}"><i class="fa-solid fa-plus"></i> Crea Tarea</a>
+        </div>
+
+        <div th:if="${!#lists.isEmpty(tareas)}" class="is-not-empty">
+            <div th:each="t : ${tareas}" class="tarea-item">
+                <div class="first-part-tarea">
+                    <form th:action="@{/tarea/editar-estado/{id_tarea}(id_tarea = ${t.id_tarea})}" method="post">
+                        <input type="checkbox" th:checked="${t.estado == 'hecha'}" th:disabled="${t.estado == 'hecha'}"
+                            onchange="this.form.submit()">
+                    </form>
+                    <div class="details-tarea">
+                        <h1 th:style="${t.estado == 'hecha'} ? 'text-decoration: line-through; color: #a8a8a8' : ''"
+                            th:text="${t.titulo}"></h1>
+                        <p th:text="${t.descripcion}"></p>
+                        <div class="date-details-tarea">
+                            <div class="date">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <p th:text="${t.fecha_inicio}"></p>
+                            </div>
+                            <div class="date">
+                                <i class="fa-regular fa-calendar-check"></i>
+                                <p th:text="${t.fecha_fin}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a th:hidden="${t.estado == 'hecha'}"
+                        th:href="@{/tarea/editar/{id_tarea}(id_tarea = ${t.id_tarea})}"><i
+                            class="fa-regular fa-pen-to-square"></i></a>
+                    <form th:action="@{/tarea/eliminar/{id_tarea}(id_tarea = ${t.id_tarea})}" method="post">
+                        <button type="submit"><i class="fa-regular fa-trash-can"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Editar Proyecto</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/CrearProyecto.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Editar Proyecto</h1>
+    <form th:action="@{/proyecto/editar/{id_proyecto}(id_proyecto = ${p.id})}" method="post">
+        <div>
+            <label>Titulo:</label>
+            <input type="text" th:value="${p.titulo}" name="titulo" placeholder="Introduce el titulo de la tarea" required>
+        </div>
+        <div>
+            <label>Descripción</label>
+            <textarea name="descripcion" th:text="${p.descripcion}" placeholder="Introduce la descripcion de la tarea (Optional)"></textarea>
+        </div>
+        <input type="hidden" name="estado" value="pendiente">
+        <input type="hidden" name="fecha_creation" th:value="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}" />
+        <div>
+            <a th:href="@{/proyecto/listar-proyectos}">Cancelar</a>
+            <button type="submit">Editar</button>
+        </div>
+    </form>
+</body>
+</html>

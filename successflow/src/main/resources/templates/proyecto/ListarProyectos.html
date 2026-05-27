@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Listar Proyectos</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/ListarProyectos.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="side-bar">
+        <div class="logo">
+            <img th:src="@{/images/icon-color.png}" alt="icon color">
+            <img th:src="@{/images/wordmark-black.png}" alt="word mark">
+        </div>
+        <nav>
+            <a th:href="@{/dashboard}" class="dashboard-link">
+                <i class="fa-solid fa-chart-simple"></i>
+                Dashboard
+            </a>
+            <a th:href="@{/tarea/listar-todo}" class="dashboard-link">
+                <i class="fa-regular fa-square-check"></i>
+                Mis Tareas
+            </a>
+            <a th:href="@{/proyecto/listar-proyectos}" class="dashboard-link-is-active">
+                <i class="fa-solid fa-folder-tree"></i>
+                Proyectos
+            </a>
+            <a href="" class="dashboard-link">
+                <i class="fa-regular fa-circle-check"></i>
+                Tareas Completas
+            </a>
+            <a href="" class="dashboard-link">
+                <i class="fa-regular fa-user"></i>
+                Perfil
+            </a>
+        </nav>
+        <div class="footer-nav">
+            <div class="usuario">
+                <p th:text="${firstLetter}"></p>
+                <div class="details">
+                    <p th:text="${usuario.username}"></p>
+                    <p th:text="${usuario.correo}"></p>
+                </div>
+            </div>
+            <form th:action="@{/logout}" method="post">
+                <div class="logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <button type="submit">Logout</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="content">
+        <div class="header-content">
+            <div class="titles">
+                <h1>Mis Proyectos</h1>
+                <p>Gestiona tus proycetos personales y compartidos</p>
+            </div>
+            <a th:href="@{/proyecto/crear}"><i class="fa-solid fa-plus"></i> Nuevo Proyecto</a>
+        </div>
+        <div th:if="${#lists.isEmpty(proyectos)}" class="proyectos">
+            <i class="fa-regular fa-folder-open"></i>
+            <h3>No hay proyectos</h3>
+            <p>Comienza creando tu primer proyecto.</p>
+            <a th:href="@{/proyecto/crear}"><i class="fa-solid fa-plus"></i> Crea Proyecto</a>
+        </div>
+
+        <div th:if="${!#lists.isEmpty(proyectos)}" class="is-not-empty">
+            <div th:each="p : ${proyectos}" class="proyecto-item">
+                <a th:href="@{/proyecto/proyectoConId/{id_proyecto}(id_proyecto = ${p.id})}" class="head-folder">
+                    <i class="fa-regular fa-folder-open"></i>
+                    <p th:text="${p.titulo}"></p>
+                </a>
+                <div class="body-folder">
+                    <div class="details-folder">
+                        <p th:text="${p.descripcion}"></p>
+                        <div class="miembros">
+                            <i class="fa-solid fa-user-group"></i>
+                            <p th:text="${countMiembros}"></p>
+                            <p>miembros</p>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <a th:href="@{/proyecto/editar/{id_proyecto}(id_proyecto = ${p.id})}"><i class="fa-regular fa-pen-to-square"></i></a>
+                        <form th:action="@{/proyecto/eliminar/{id_proyecto}(id_proyecto = ${p.id})}" method="post">
+                            <button type="submit"><i class="fa-regular fa-trash-can"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

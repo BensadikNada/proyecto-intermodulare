@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Dashboard</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/Dashboard.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="side-bar">
+        <div class="logo">
+            <img th:src="@{/images/icon-color.png}" alt="icon color">
+            <img th:src="@{/images/wordmark-black.png}" alt="word mark">
+        </div>
+        <nav>
+            <a th:href="@{/dashboard}" class="dashboard-link-is-active">
+                <i class="fa-solid fa-chart-simple"></i>
+                Dashboard
+            </a>
+            <a th:href="@{/tarea/listar-todo}" class="dashboard-link">
+                <i class="fa-regular fa-square-check"></i>
+                Mis Tareas
+            </a>
+            <a th:href="@{/proyecto/listar-proyectos}" class="dashboard-link">
+                <i class="fa-solid fa-folder-tree"></i>
+                Proyectos
+            </a>
+            <a href="" class="dashboard-link">
+                <i class="fa-regular fa-circle-check"></i>
+                Tareas Completas
+            </a>
+            <a href="" class="dashboard-link">
+                <i class="fa-regular fa-user"></i>
+                Perfil
+            </a>
+        </nav>
+        <div class="footer-nav">
+            <div class="usuario">
+                <p th:text="${firstLetter}"></p>
+                <div class="details">
+                    <p th:text="${usuario.username}"></p>
+                    <p th:text="${usuario.correo}"></p>
+                </div>
+            </div>
+            <form th:action="@{/logout}" method="post">
+                <div class="logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <button type="submit">Logout</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Dashboard</h1>
+        <p>¡Bienvenidos de nuevo! Esto es lo que sucede hoy.</p>
+        <div class="estadisticas">
+            <div class="card-estadisticas">
+                <div class="details-card">
+                    <h5>Tareas Pendiente</h5>
+                    <p th:text="${countTareaPendiente}"></p>
+                </div>
+                <i class="fa-solid fa-hourglass-half"></i>
+            </div>
+            <div class="card-estadisticas">
+                <div class="details-card">
+                    <h5>Tareas Completas</h5>
+                    <p th:text="${countTareaCompletas}"></p>
+                </div>
+                <i class="fa-regular fa-square-check customise-square-check"></i>
+            </div>
+            <div class="card-estadisticas">
+                <div class="details-card">
+                    <h5>Proyectos</h5>
+                    <p th:text="${countProyectos}"></p>
+                </div>
+                <i class="fa-regular fa-folder-open"></i>
+            </div>
+            <div class="card-estadisticas">
+                <div class="details-card">
+                    <h5>Total Tareas</h5>
+                    <p th:text="${countTarea}"></p>
+                </div>
+                <i class="fa-solid fa-list"></i>
+            </div>
+        </div>
+        <div class="crear-tareas-proyectos">
+            <div class="crear">
+                <div class="head-crear">
+                    <p>Tareas Reciente</p>
+                    <a th:href="@{/tarea/listar-todo}">Ver Todo <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+                <div class="body-crear">
+                    <div th:if="${countTarea == 0}" class="empty">
+                        <i class="fa-regular fa-rectangle-list"></i>
+                        <p>No hay tareas</p>
+                        <a th:href="@{/tarea/listar-todo}">Crea tu tarea <i class="fa-solid fa-plus"></i></a>
+                    </div>
+                    <div th:if="${countTarea > 0}" class="not-empty">
+                        <div th:each="t : ${tareas}" class="tarea-details-dashboard">
+                            <input type="checkbox" th:checked="${t.estado == 'hecha'}" disabled>
+                            <div class="details-tarea">
+                                <h5 th:style="${t.estado == 'hecha'} ? 'text-decoration: line-through; color: #a8a8a8' : ''"
+                                    th:text="${t.titulo}"></h5>
+                                <div>
+                                    <i class="fa-regular fa-clock"></i>
+                                    <p th:text="${t.fecha_fin}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="crear">
+                <div class="head-crear">
+                    <p>Proyectos Reciente</p>
+                    <a th:href="@{/proyecto/listar-proyectos}">Ver Todo <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+                <div class="body-crear">
+                    <div th:if="${countProyectos == 0}" class="empty">
+                        <i class="fa-regular fa-folder"></i>
+                        <p>No hay proyectos</p>
+                        <a th:href="@{/proyecto/listar-proyectos}">Crea tu proyecto <i class="fa-solid fa-plus"></i></a>
+                    </div>
+                    <div th:if="${countProyectos > 0}" class="not-empty">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

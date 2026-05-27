@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Register</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/Login.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <a th:href="@{/}" class="logo">
+        <img th:src="@{/images/wordmark-black.png}" alt="successflow word logo" class="logo-words">
+    </a>
+    <div class="login-form">
+        <h3>Create account</h3>
+        <p>Get started with your task management</p>
+        <form th:action="@{/auth/register}" method="post">
+
+            <div>
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter username" required>
+            </div>
+
+            <div>
+                <label>First Name</label>
+                <input type="text" name="nombre" placeholder="Enter first name" required>
+            </div>
+
+            <div>
+                <label>Last Name</label>
+                <input type="text" name="apellidos" placeholder="Enter last name" required>
+            </div>
+
+            <div>
+                <label>Email</label>
+                <input type="email" name="correo" placeholder="example@mail.com" required>
+            </div>
+
+            <div>
+                <label>Password</label>
+                <input type="password" name="contrasenia" placeholder="********" required>
+            </div>
+
+            <button type="submit">Create Account</button>
+
+        </form>
+    </div>
+</body>
+
+</html>
