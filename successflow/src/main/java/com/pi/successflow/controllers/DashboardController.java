@@ -32,9 +32,6 @@ public class DashboardController {
     @Autowired
     private ProyectoService proyectoService;
 
-    @Autowired
-    private TareaRepository tareaRepository;
-
     @GetMapping("/dashboard")
     public String dashboard(Model m, Authentication authentication) {
         // ---listar usuario----
