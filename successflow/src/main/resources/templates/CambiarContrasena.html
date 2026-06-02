@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cambiar Contraseña</title>
+    <link rel="stylesheet" th:href="@{/css/CambiarContrasena.css}">
+</head>
+
+<body>
+
+<h1>Cambiar Contraseña</h1>
+
+<form th:action="@{/perfil/cambiar-contrasenia}" method="post">
+
+    <div>
+        <label>Contraseña actual</label>
+        <input type="password" name="contrasenaActual" placeholder="Introduce tu contraseña actual" required>
+    </div>
+
+    <div>
+        <label>Nueva contraseña</label>
+        <input type="password" name="nuevaContrasena" placeholder="Nueva contraseña" required>
+    </div>
+
+    <div>
+        <label>Confirmar contraseña</label>
+        <input type="password" name="confirmarContrasena" placeholder="Repite la nueva contraseña" required>
+    </div>
+
+    <div>
+        <a th:href="@{/perfil/}">Cancelar</a>
+        <button type="submit">Actualizar</button>
+    </div>
+
+    <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+    <p th:if="${success}" th:text="${success}" style="color:green;"></p>
+
+</form>
+
+</body>
+</html>

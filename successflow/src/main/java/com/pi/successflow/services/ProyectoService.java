@@ -41,25 +41,25 @@ public class ProyectoService {
         // project created
         // for (Integer idu : ids_usuarios) {
 
-        //     // avoid adding owner again
-        //     if (idu == admin_id)
-        //         continue;
+        // // avoid adding owner again
+        // if (idu == admin_id)
+        // continue;
 
-        //     Usuario miembro = usuarioRepository.findById(idu)
-        //             .orElseThrow(() -> new RuntimeException("Usuario no encontrado: " + idu));
+        // Usuario miembro = usuarioRepository.findById(idu)
+        // .orElseThrow(() -> new RuntimeException("Usuario no encontrado: " + idu));
 
-        //     Participacion participacion = new Participacion();
-        //     participacion.setUsuario(miembro);
-        //     participacion.setProyecto(proyectoGuardado);
-        //     participacion.setRol(Rol.miembro);
+        // Participacion participacion = new Participacion();
+        // participacion.setUsuario(miembro);
+        // participacion.setProyecto(proyectoGuardado);
+        // participacion.setRol(Rol.miembro);
 
-        //     participacionRepository.save(participacion);
+        // participacionRepository.save(participacion);
         // }
 
         return proyectoGuardado;
     }
 
-    public void anadirUsuarioConCorreo(String email, int idProyecto){
+    public void anadirUsuarioConCorreo(String email, int idProyecto) {
         Usuario miembro = usuarioRepository.findByCorreo(email).orElseThrow();
         Proyecto proyecto = proyectoRepository.findById(idProyecto).orElseThrow();
         Participacion participacion = new Participacion();
@@ -109,7 +109,7 @@ public class ProyectoService {
         return proyectoRepository.save(proyectoExistente);
     }
 
-    //----eliminar proyecto----
+    // ----eliminar proyecto----
     public boolean eliminarProyecto(int id) {
         if (!proyectoRepository.existsById(id)) {
             return false;
@@ -118,8 +118,8 @@ public class ProyectoService {
         return true;
     }
 
-    //----contar proyectos de usuario----
-    public int countPtoyectoUsuario(int usuario_id){
+    // ----contar proyectos de usuario----
+    public int countPtoyectoUsuario(int usuario_id) {
         return listarPorUsuario(usuario_id).size();
     }
 
@@ -128,7 +128,11 @@ public class ProyectoService {
                 .orElseThrow(() -> new RuntimeException("Tarea no encontrada"));
     }
 
-    public int countMiembrosProyecto(int id_proyecto){
+    public int countMiembrosProyecto(int id_proyecto) {
         return participacionRepository.findByProyecto(id_proyecto).size();
+    }
+
+    public List<Usuario> getMiembrosProyecto(int id_proyecto) {
+        return participacionRepository.findUsuariosByProyecto(id_proyecto);
     }
 }

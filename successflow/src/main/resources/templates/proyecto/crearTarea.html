@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Crear Tarea</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/CrearTarea.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>Crear Tarea</h1>
+    <form th:action="@{/proyecto/crear-tarea/{id_proyecto}(id_proyecto = ${p.id})}" method="post">
+        <div>
+            <label>Titulo:</label>
+            <input type="text" name="titulo" placeholder="Introduce el titulo de la tarea" required>
+        </div>
+        <div>
+            <label>Descripción</label>
+            <textarea name="descripcion" placeholder="Introduce la descripcion de la tarea (Optional)"></textarea>
+        </div>
+        <div>
+            <label>Fecha de Inicio</label>
+            <input type="date" name="fecha_inicio" required>
+        </div>
+        <div>
+            <label>Fecha limite</label>
+            <input type="date" name="fecha_fin" required>
+        </div>
+        <div>
+            <label>Asignar usuarios</label>
+
+            <div class="usuarios-container">
+                <div class="usuario-item" th:each="u : ${usuariosProyecto}">
+                    <input type="checkbox" name="usuariosIds" th:value="${u.id_usuario}">
+                    <span th:text="${u.nombre}"></span>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="estado" value="pendiente">
+        <div>
+            <a th:href="@{/proyecto/proyectoConId/{id_proyecto}(id_proyecto = ${p.id})}">Cancelar</a>
+            <button type="submit">Crear</button>
+        </div>
+    </form>
+</body>
+
+</html>

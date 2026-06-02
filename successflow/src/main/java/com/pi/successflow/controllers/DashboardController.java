@@ -1,6 +1,8 @@
 package com.pi.successflow.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -8,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.pi.successflow.entity.Proyecto;
 import com.pi.successflow.entity.Tarea;
 import com.pi.successflow.entity.Usuario;
+import com.pi.successflow.repositories.TareaRepository;
 import com.pi.successflow.repositories.UsuarioRepository;
 import com.pi.successflow.services.ProyectoService;
 import com.pi.successflow.services.TareaService;
@@ -28,12 +32,16 @@ public class DashboardController {
     @Autowired
     private ProyectoService proyectoService;
 
+    @Autowired
+    private TareaRepository tareaRepository;
+
     @GetMapping("/dashboard")
     public String dashboard(Model m, Authentication authentication) {
         // ---listar usuario----
         String email = authentication.getName();
         Usuario u = usuarioRepository.findByCorreo(email).orElseThrow();
         List<Tarea> tareas = tareaService.listarPorUsuario(u.getId_usuario());
+        List<Proyecto> proyectos = proyectoService.listarPorUsuario(u.getId_usuario());
         String nombre = u.getNombre();
         String[] firstLetter = nombre.split("");
         // -----counts-----
@@ -42,12 +50,20 @@ public class DashboardController {
         int countTareasPendiente = tareaService.countTareasConEstado(u.getId_usuario(), "pendiente");
         int countProyectos = proyectoService.countPtoyectoUsuario(u.getId_usuario());
 
+        Map<Integer, Integer> countMiembros = new HashMap<>();
+        for (Proyecto proyecto : proyectos) {
+            countMiembros.put(
+                    proyecto.getId(),
+                    proyectoService.countMiembrosProyecto(proyecto.getId()));
+        }
         m.addAttribute("firstLetter", firstLetter[0]);
+        m.addAttribute("countMiembros", countMiembros);
         m.addAttribute("usuario", u);
         m.addAttribute("countTarea", countTareas);
         m.addAttribute("countTareaCompletas", countTareasCompletas);
         m.addAttribute("countTareaPendiente", countTareasPendiente);
         m.addAttribute("tareas", tareas);
+        m.addAttribute("proyectos", proyectos);
         m.addAttribute("countProyectos", countProyectos);
         return "Dashboard";
     }

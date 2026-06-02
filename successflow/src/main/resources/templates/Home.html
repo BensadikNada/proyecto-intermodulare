@@ -41,8 +41,8 @@
                         anywhere.</p>
                 </div>
                 <div class="buttons-login">
-                    <a class="get-started" href="">Get Started <i class="fa-solid fa-arrow-right"></i></a>
-                    <a class="login-hero" href="">Login</a>
+                    <a class="get-started" th:href="@{/auth/register}">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+                    <a class="login-hero" th:href="@{/auth/login}">Login</a>
                 </div>
             </div>
             <div>
@@ -163,8 +163,8 @@
             <img th:src="@{/images/wordmark-black.png}" alt="successflow word logo" class="logo-words">
         </div>
         <div class="footer-login">
-            <a href="">Login</a>
-            <a href="">Register</a>
+            <a th:href="@{/auth/login}">Login</a>
+            <a th:href="@{/auth/register}">Register</a>
             <p>© 2026 Flow Into Success</p>
         </div>
     </footer>

@@ -17,18 +17,22 @@ public class TicketService {
     private final TareaRepository tareaRepository;
     private final UsuarioRepository usuarioRepository;
 
-    //-----crear ticket-----
-    public Ticket crearTicket(Ticket t, Tarea tareaId, Usuario usuarioId) {
-        Tarea tarea = tareaRepository.findById(tareaId.getId_tarea()).orElse(null);
-        Usuario usuario = usuarioRepository.findById(usuarioId.getId_usuario()).orElse(null);
+    // -----crear ticket-----
+    public Ticket crearTicket(Ticket t, int tareaId, int usuarioId) {
+        Tarea tarea = tareaRepository.findById(tareaId).orElse(null);
+        Usuario usuario = usuarioRepository.findById(usuarioId).orElse(null);
         t.setTarea(tarea);
         t.setUsuario(usuario);
         return ticketRepository.save(t);
     }
 
-    //-----editar ticket-----
-    public Ticket editarTicket(int id, Ticket t) {
-        Ticket ticketExistente = ticketRepository.findById(id).orElse(null);
+    public Ticket getTicketById(int id_ticket) {
+        return ticketRepository.findById(id_ticket).orElse(null);
+    }
+
+    // -----editar ticket-----
+    public Ticket editarTicket(int id_ticket, Ticket t) {
+        Ticket ticketExistente = ticketRepository.findById(id_ticket).orElse(null);
 
         if (ticketExistente == null) {
             return null;
@@ -41,10 +45,22 @@ public class TicketService {
             ticketExistente.setDescripcion(t.getDescripcion());
         }
 
+        if (t.getTarea() != null) {
+            ticketExistente.setTarea(t.getTarea());
+        }
+
+        if (t.getUsuario() != null) {
+            ticketExistente.setUsuario(t.getUsuario());
+        }
+
+        if (t.getFecha_creacion() != null) {
+            ticketExistente.setFecha_creacion(t.getFecha_creacion());
+        }
+
         return ticketRepository.save(ticketExistente);
     }
 
-    //-----eliminar ticket-----
+    // -----eliminar ticket-----
     public boolean eliminarTicket(int id) {
         if (!ticketRepository.existsById(id)) {
             return false;
@@ -53,14 +69,12 @@ public class TicketService {
         return true;
     }
 
-    //-----buscar tickets por tarea-----
+    // -----buscar tickets por tarea-----
     public List<Ticket> getTicketsByTarea(int tareaId) {
-        return ticketRepository.findAll().stream()
-                .filter(ticket -> ticket.getTarea() != null && ticket.getTarea().getId_tarea() == tareaId)
-                .collect(Collectors.toList());
+        return ticketRepository.findByTarea(tareaId);
     }
 
-    //-----buscar tickets por usuario-----
+    // -----buscar tickets por usuario-----
     public List<Ticket> getTicketsByUsuario(int usuarioId) {
         return ticketRepository.findAll().stream()
                 .filter(ticket -> ticket.getUsuario() != null && ticket.getUsuario().getId_usuario() == usuarioId)

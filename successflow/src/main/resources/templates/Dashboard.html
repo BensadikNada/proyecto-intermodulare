@@ -29,11 +29,7 @@
                 <i class="fa-solid fa-folder-tree"></i>
                 Proyectos
             </a>
-            <a href="" class="dashboard-link">
-                <i class="fa-regular fa-circle-check"></i>
-                Tareas Completas
-            </a>
-            <a href="" class="dashboard-link">
+            <a th:href="@{/perfil/}" class="dashboard-link">
                 <i class="fa-regular fa-user"></i>
                 Perfil
             </a>
@@ -100,7 +96,7 @@
                         <a th:href="@{/tarea/listar-todo}">Crea tu tarea <i class="fa-solid fa-plus"></i></a>
                     </div>
                     <div th:if="${countTarea > 0}" class="not-empty">
-                        <div th:each="t : ${tareas}" class="tarea-details-dashboard">
+                        <div th:each="t : ${tareas}"  class="tarea-details-dashboard">
                             <input type="checkbox" th:checked="${t.estado == 'hecha'}" disabled>
                             <div class="details-tarea">
                                 <h5 th:style="${t.estado == 'hecha'} ? 'text-decoration: line-through; color: #a8a8a8' : ''"
@@ -126,7 +122,20 @@
                         <a th:href="@{/proyecto/listar-proyectos}">Crea tu proyecto <i class="fa-solid fa-plus"></i></a>
                     </div>
                     <div th:if="${countProyectos > 0}" class="not-empty">
-
+                        <div th:each="p : ${proyectos}" >
+                            <a th:href="@{/proyecto/proyectoConId/{id_proyecto}(id_proyecto = ${p.id})}" class="proyecto-details-dashboard">
+                                <i class="fa-regular fa-folder-open"></i>
+                                <div class="details-proyecto">
+                                    <h5 th:text="${p.titulo}"></h5>
+                                    <p th:text="${p.descripcion}"></p>
+                                    <div>
+                                        <p th:text="${countMiembros.get(p.id) != null ? countMiembros.get(p.id) : 0}">
+                                        </p>
+                                        <p>miembros</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

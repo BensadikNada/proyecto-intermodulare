@@ -19,7 +19,19 @@ public class AuthController {
 
     // ----Login Page----
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(
+            @RequestParam(value = "error", required = false) String error,
+            @RequestParam(value = "expired", required = false) String expired,
+            Model model) {
+
+        if (error != null) {
+            model.addAttribute("error", "Invalid email or password");
+        }
+
+        if (expired != null) {
+            model.addAttribute("error", "Your session has expired. Please login again.");
+        }
+
         return "auth/Login";
     }
 
@@ -33,7 +45,7 @@ public class AuthController {
     public String handleRegister(@ModelAttribute Usuario usuario, Model model) {
 
         if (usuarioService.crearUsuario(usuario) == null) {
-            model.addAttribute("error", "Email already registered");
+            model.addAttribute("error", "Correo ya existe");
             return "auth/Register";
         }
 

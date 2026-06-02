@@ -74,4 +74,8 @@ public class UsuarioService {
         return usuarioRepository.findByUsername(username)
                 .orElse(null);
     }
+
+    public boolean verificarContrasena(Usuario u, String rawPassword) {
+        return passwordEncoder.matches(rawPassword, u.getContrasenia());
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.pi.successflow.entity.Participacion;
+import com.pi.successflow.entity.Usuario;
 
 @Repository
 public interface ParticipacionRepository extends JpaRepository<Participacion, Integer> {
@@ -22,6 +23,8 @@ public interface ParticipacionRepository extends JpaRepository<Participacion, In
     @Query("SELECT p FROM Participacion p WHERE p.usuario.id_usuario = :usuarioId AND p.proyecto.id = :proyectoId")
     Optional<Participacion> findByUsuarioAndProyecto(
             @Param("usuarioId") int usuarioId,
-            @Param("proyectoId") int proyectoId
-    );
+            @Param("proyectoId") int proyectoId);
+
+    @Query("SELECT p.usuario FROM Participacion p WHERE p.proyecto.id = :proyectoId")
+    List<Usuario> findUsuariosByProyecto(@Param("proyectoId") int proyectoId);
 }

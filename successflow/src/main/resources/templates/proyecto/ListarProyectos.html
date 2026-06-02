@@ -30,10 +30,6 @@
                 Proyectos
             </a>
             <a href="" class="dashboard-link">
-                <i class="fa-regular fa-circle-check"></i>
-                Tareas Completas
-            </a>
-            <a href="" class="dashboard-link">
                 <i class="fa-regular fa-user"></i>
                 Perfil
             </a>
@@ -80,7 +76,7 @@
                         <p th:text="${p.descripcion}"></p>
                         <div class="miembros">
                             <i class="fa-solid fa-user-group"></i>
-                            <p th:text="${countMiembros}"></p>
+                            <p th:text="${countMiembros.get(p.id) != null ? countMiembros.get(p.id) : 0}"></p>
                             <p>miembros</p>
                         </div>
                     </div>

@@ -11,13 +11,31 @@ import com.pi.successflow.enumeration.TipoTarea;
 
 public interface TareaRepository extends JpaRepository<Tarea, Integer> {
 
-    List<Tarea> findByTipo(TipoTarea tipo);
+        List<Tarea> findByTipo(TipoTarea tipo);
 
-    List<Tarea> findByEstado(String estado);
+        List<Tarea> findByEstado(String estado);
 
-    @Query("SELECT t FROM Tarea t JOIN t.usuarios u WHERE u.id_usuario = :usuarioId")
-    List<Tarea> findByUsuarioId(@Param("usuarioId") int usuarioId);
+        @Query("SELECT t FROM Tarea t JOIN t.usuarios u WHERE u.id_usuario = :usuarioId")
+        List<Tarea> findByUsuarioId(@Param("usuarioId") int usuarioId);
 
-    // @Query("SELECT t FROM Tarea t JOIN t.usuarios u WHERE u.id_usuario = :usuarioId AND t.id_proyecto = :proyectoId")
-    // List<Tarea> findByUsuarioIdYProyectoId(@Param("usuarioId") int usuarioId, @Param("proyectoId") int proyectoId);
+        @Query("""
+                        SELECT t
+                        FROM Tarea t
+                        JOIN t.usuarios u
+                        WHERE u.id_usuario = :usuarioId
+                        AND t.estado = :estado
+                        """)
+        List<Tarea> findByUsuarioIdAndEstado(
+                        @Param("usuarioId") int usuarioId,
+                        @Param("estado") String estado);
+
+        // @Query("SELECT t FROM Tarea t JOIN t.usuarios u WHERE u.id_usuario =
+        // :usuarioId AND t.proyecto_id = :proyectoId")
+        // List<Tarea> findByUsuarioIdYProyectoId(@Param("usuarioId") int usuarioId,
+        // @Param("proyectoId") int proyectoId);
+
+        @Query("SELECT t FROM Tarea t WHERE t.estado = :estado AND t.proyecto.id = :proyectoId")
+        List<Tarea> findByEstadoYProyecto(
+                        @Param("estado") String estado,
+                        @Param("proyectoId") int proyectoId);
 }

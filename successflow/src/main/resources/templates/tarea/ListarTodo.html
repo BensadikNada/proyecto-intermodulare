@@ -30,10 +30,6 @@
                 Proyectos
             </a>
             <a href="" class="dashboard-link">
-                <i class="fa-regular fa-circle-check"></i>
-                Tareas Completas
-            </a>
-            <a href="" class="dashboard-link">
                 <i class="fa-regular fa-user"></i>
                 Perfil
             </a>
@@ -93,6 +89,8 @@
                     </div>
                 </div>
                 <div class="actions">
+                    <p th:text="${t.id_tarea}"></p>
+                    <a th:href="@{/comentario/listar-comentarios-tarea/{id_tarea}(id_tarea = ${t.id_tarea})}"><i class="fa-regular fa-comment"></i></a>
                     <a th:hidden="${t.estado == 'hecha'}"
                         th:href="@{/tarea/editar/{id_tarea}(id_tarea = ${t.id_tarea})}"><i
                             class="fa-regular fa-pen-to-square"></i></a>

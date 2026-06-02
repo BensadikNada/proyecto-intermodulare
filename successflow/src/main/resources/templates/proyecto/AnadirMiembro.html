@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Añadir Miembro</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/AnadirMiembro.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Añadir Miembro al Proyecto</h1>
+    <form th:action="@{/proyecto/anadir-miembro/{id_proyecto}(id_proyecto = ${p.id})}" method="post">
+        <div>
+            <label>Correo electronico del usuario:</label>
+            <input type="email" name="correo" placeholder="Introduce el correo de tu companiero" required>
+        </div>
+        <div>
+            <a th:href="@{/proyecto/proyectoConId/{id_proyecto}(id_proyecto = ${p.id})}">Cancelar</a>
+            <button type="submit">Añadir Miembro</button>
+        </div>
+    </form>
+</body>
+</html>

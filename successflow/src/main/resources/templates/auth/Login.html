@@ -18,6 +18,9 @@
         <h3>Welcome Back</h3>
         <p>Sign in to your account</p>
         <form th:action="@{/login}" method="post">
+            <div th:if="${error}" class="alert alert-danger">
+                <span th:text="${error}"></span>
+            </div>
             <div>
                 <label for="email or username">Correo o Username</label>
                 <input type="text" name="username" placeholder="example@example.com or username">

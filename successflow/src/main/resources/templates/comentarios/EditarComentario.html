@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessFlow - Editar Comentario</title>
+    <link rel="icon" th:href="@{/images/lockup-light-background.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/css/CrearComentario.css}">
+    <script src="https://kit.fontawesome.com/563f11c9fb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Editar Comentario</h1>
+    <form th:action="@{/comentario/editar-comentario/{id_ticket}/{tareaId}(id_ticket = ${ticket.id_ticket}, tareaId = ${tareaId})}" method="post">
+        <div>
+            <label>Titulo:</label>
+            <input type="text" th:value="${ticket.titulo}" name="titulo" placeholder="Introduce el titulo de tu comentario" required></input>
+        </div>
+        <div>
+            <label>Descripción</label>
+            <textarea th:text="${ticket.descripcion}" name="descripcion" placeholder="Introduce la descripcion de tu comentario" required></textarea>
+        </div>
+        <input type="hidden" name="fecha_creacion" th:value="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}" />
+        <div>
+            <a th:href="@{/comentario/listar-comentarios-tarea/{id_tarea}(id_tarea = ${tareaId})}">Cancelar</a>
+            <button type="submit">Editar</button>
+        </div>
+    </form>
+</body>
+</html>

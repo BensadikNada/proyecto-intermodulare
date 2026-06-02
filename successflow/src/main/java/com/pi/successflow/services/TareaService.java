@@ -61,6 +61,25 @@ public class TareaService {
         return tareaGuardada;
     }
 
+    // crear tarea in proyecto
+    public Tarea crearTareaEnProyecto(
+            Tarea tarea,
+            int proyectoId,
+            List<Integer> usuariosIds) {
+
+        Proyecto proyecto = proyectoRepository
+                .findById(proyectoId)
+                .orElseThrow();
+
+        tarea.setProyecto(proyecto);
+
+        List<Usuario> usuarios = usuarioRepository.findAllById(usuariosIds);
+
+        tarea.setUsuarios(usuarios);
+
+        return tareaRepository.save(tarea);
+    }
+
     // edit task
     public Tarea editarTarea(int id, Tarea t, Integer proyectoId) {
 
@@ -92,6 +111,51 @@ public class TareaService {
         return tareaRepository.save(tareaExistente);
     }
 
+    // editar tarea en proyecto
+    public Tarea editarTareaProyecto(int id, Tarea t, Integer proyectoId, List<Integer> usuariosIds) {
+
+        Tarea tareaExistente = tareaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tarea no encontrada"));
+
+        if (t.getTitulo() != null)
+            tareaExistente.setTitulo(t.getTitulo());
+
+        if (t.getDescripcion() != null)
+            tareaExistente.setDescripcion(t.getDescripcion());
+
+        if (t.getEstado() != null)
+            tareaExistente.setEstado(t.getEstado());
+
+        if (t.getFecha_inicio() != null)
+            tareaExistente.setFecha_inicio(t.getFecha_inicio());
+
+        if (t.getFecha_fin() != null)
+            tareaExistente.setFecha_fin(t.getFecha_fin());
+
+        if (t.getTipo() != null)
+            tareaExistente.setTipo(t.getTipo());
+
+        if (proyectoId != null) {
+            Proyecto proyecto = proyectoRepository.findById(proyectoId)
+                    .orElseThrow(() -> new RuntimeException("Proyecto no encontrado"));
+            tareaExistente.setProyecto(proyecto);
+        }
+
+        if (usuariosIds != null) {
+            List<Usuario> usuarios = usuarioRepository.findAllById(usuariosIds);
+
+            tareaExistente.setUsuarios(usuarios);
+
+            // AUTO TYPE RULE
+            tareaExistente.setTipo(
+                    usuarios.size() > 1
+                            ? TipoTarea.compartida
+                            : TipoTarea.individual);
+        }
+
+        return tareaRepository.save(tareaExistente);
+    }
+
     // delete tarea
     @Transactional
     public void eliminarTarea(int id) {
@@ -99,7 +163,7 @@ public class TareaService {
         Tarea tarea = tareaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Tarea no encontrada"));
 
-        //remove the realcion befor deleting
+        // remove the realcion befor deleting
         tarea.getUsuarios().clear();
         tareaRepository.delete(tarea);
     }
@@ -147,9 +211,21 @@ public class TareaService {
         return tareaRepository.findByUsuarioId(usuario_id).size();
     }
 
-    public int countTareasConEstado(int usuario_id, String estado) {
-        List<Tarea> tareas = tareaRepository.findByUsuarioId(usuario_id);
-        tareas = tareaRepository.findByEstado(estado);
-        return tareas.size();
+    public int countTareasConEstado(int usuarioId, String estado) {
+        return tareaRepository
+                .findByUsuarioIdAndEstado(usuarioId, estado)
+                .size();
+    }
+
+    public List<Tarea> findByEstadoYProyecto(int proyecto_id, String estado) {
+        return tareaRepository.findByEstadoYProyecto(estado, proyecto_id);
+    }
+
+    public void actualizarEstado(int idTarea, String estado) {
+        Tarea t = tareaRepository.findById(idTarea)
+                .orElseThrow();
+
+        t.setEstado(estado);
+        tareaRepository.save(t);
     }
 }

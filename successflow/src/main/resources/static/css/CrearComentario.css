@@ -8,12 +8,15 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular',
         'Lucida Grande', 'Lucida Sans Unicode',
         Geneva, Verdana, sans-serif;
+
     background: linear-gradient(180deg, #ebeffd 0%, #ffffff 50%, #f5ebff 100%);
     min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto auto;
+
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
     gap: 20px;
     padding: 20px;
 }
@@ -21,21 +24,26 @@ body {
 h1 {
     text-align: center;
     color: #222;
+    font-size: 28px;
 }
 
 form {
     background-color: white;
-    padding: 20px;
-    border: #eee 1px solid;
+    padding: 25px;
+    border: 1px solid #eee;
     border-radius: 15px;
+
     width: 450px;
+    max-width: 100%;
+
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-form>div {
+form > div:first-child {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -54,7 +62,6 @@ textarea {
     border: 1px solid #dcdcdc;
     border-radius: 10px;
     font-size: 14px;
-    transition: 0.3s ease;
     outline: none;
 }
 
@@ -63,18 +70,16 @@ textarea {
     resize: vertical;
 }
 
-form>div:last-child {
-    flex-direction: row;
+form > div:last-child {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
 }
 
 a {
     text-decoration: none;
     color: #666;
     font-weight: bold;
-    transition: 0.3s ease;
 }
 
 a:hover {
@@ -89,35 +94,8 @@ button {
     border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
-    transition: 0.3s;
 }
 
 button:hover {
     background: #6848ff;
-}
-
-.usuarios-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-.usuario-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f8f9fa;
-}
-
-.usuario-item>input {
-    margin: 0;
-}
-
-.usuario-item:hover {
-    background-color: #eef2ff;
-    border-color: #6366f1;
 }

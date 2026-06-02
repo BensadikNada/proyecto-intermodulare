@@ -11,27 +11,26 @@ import com.pi.successflow.entity.Ticket;
 public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
     @Query("""
-        SELECT t
-        FROM Ticket t
-        WHERE t.usuario.id_usuario = :usuarioId
-    """)
+                SELECT t
+                FROM Ticket t
+                WHERE t.usuario.id_usuario = :usuarioId
+            """)
     List<Ticket> findByUsuario(@Param("usuarioId") int usuarioId);
 
     @Query("""
-        SELECT t
-        FROM Ticket t
-        WHERE t.tarea.id = :tareaId
-    """)
+                SELECT t
+                FROM Ticket t
+                WHERE t.tarea.id_tarea = :tareaId
+            """)
     List<Ticket> findByTarea(@Param("tareaId") int tareaId);
 
     @Query("""
-        SELECT t
-        FROM Ticket t
-        WHERE t.tarea.id = :tareaId
-        AND t.usuario.id_usuario = :usuarioId
-    """)
+                SELECT t
+                FROM Ticket t
+                WHERE t.tarea.id = :tareaId
+                AND t.usuario.id_usuario = :usuarioId
+            """)
     List<Ticket> findByTareaAndUsuario(
             @Param("tareaId") int tareaId,
-            @Param("usuarioId") int usuarioId
-    );
+            @Param("usuarioId") int usuarioId);
 }

@@ -235,42 +235,179 @@ nav {
 }
 
 .firstLetterUsuarios {
-    width: 30px;
-    height: 30px;
-    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 30px;
+    height: 30px;
+    margin: 0;
     border-radius: 50%;
     background-color: #888cff;
     color: white;
     font-weight: bold;
     margin-left: -8px;
     border: 2px solid white;
+    gap: 0;
 }
 
 .body-project {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    align-items: start;
+    margin-top: 20px;
 }
 
-.header-pendiente{
+.header-pendiente {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.header-pendiente > div{
+.header-pendiente>div {
     display: flex;
     gap: 5px;
     align-items: center;
 }
 
-.header-pendiente > div i{
+.header-pendiente>div i {
     font-size: 10px;
     color: #606060;
+}
+
+.header-en-progreso {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-en-progreso>div {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.header-en-progreso>div i {
+    font-size: 10px;
+    color: #481fff;
+}
+
+.header-hecha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-hecha>div {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.header-hecha>div i {
+    font-size: 10px;
+    color: rgb(0, 168, 0);
+}
+
+.header-pendiente>a {
+    text-decoration: none;
+    color: #3b3b3b;
+    padding: 5px;
+}
+
+.header-en-progreso>a {
+    text-decoration: none;
+    padding: 5px;
+    color: #3b3b3b;
+}
+
+.header-hecha>a {
+    text-decoration: none;
+    padding: 5px;
+    color: #3b3b3b;
+}
+
+.header-pendiente>a:hover {
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.header-en-progreso>a:hover {
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.header-hecha>a:hover {
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.card-pendiente {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.details-tarea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulos h3 {
+    margin: 0;
+    color: #333;
+}
+
+.titulos p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions a,
+.actions button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.actions a {
+    color: #007bff;
+}
+
+.actions button {
+    color: #dc3545;
+}
+
+.actions form {
+    margin: 0;
+}
+
+.estado-form {
+    display: inline-block;
+}
+
+.estado-form select {
+    width: 180px;
+    padding: 10px 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+}
+
+.estado-form option {
+    padding: 10px;
 }
